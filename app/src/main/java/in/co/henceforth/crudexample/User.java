@@ -56,5 +56,10 @@ public class User {
         this._mobile = mobile;
     }
 
+    @Override
+    public String toString() {
+        return _id + ". " + _name;
+    }
+
 
 }

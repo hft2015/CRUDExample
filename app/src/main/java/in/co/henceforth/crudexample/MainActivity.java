@@ -5,9 +5,12 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,19 +26,20 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         DatabaseHandler db = new DatabaseHandler(this);
-        List<String> listViewValues = new ArrayList<String>();
-
         List<User> users = db.getAllUsers();
 
-        for (User u : users) {
-            listViewValues.add(u.getName());
-        }
-
         listView = (ListView) findViewById(R.id.list_users);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, android.R.id.text1,
-                listViewValues.toArray(new String[listViewValues.size()]));
+        UserListAdapter adapter = new UserListAdapter(this,R.layout.list_item,users);
+
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+                Toast.makeText(getApplicationContext(), "d" + view.getTag(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
     }
