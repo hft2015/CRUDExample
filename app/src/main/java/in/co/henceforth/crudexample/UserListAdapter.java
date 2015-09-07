@@ -2,11 +2,16 @@ package in.co.henceforth.crudexample;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -31,13 +36,29 @@ public class UserListAdapter extends ArrayAdapter<User> {
 
         User user = getItem(position);
 
-        itemView.setTag(user.getID());
+        itemView.setTag(user.get_id());
+
+
 
         TextView displayName = (TextView) itemView.findViewById(R.id.displayName);
-        displayName.setText(user.getName());
+        displayName.setText(user.get_fname() + " " + user.get_lname());
 
-        TextView displayEmail = (TextView) itemView.findViewById(R.id.displayEmail);
-        displayEmail.setText(user.getEmail());
+        TextView displayEmail = (TextView) itemView.findViewById(R.id.displayMobile);
+        displayEmail.setText(user.get_pic());
+
+        ImageView imageView = (ImageView) itemView.findViewById(R.id.displayIcon);
+
+
+        if (user.get_pic() == "noimage") {
+
+        }else{
+
+
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            imageView.setImageURI(Uri.parse(user.get_pic()));
+        }
+
+
 
         return itemView;
     }

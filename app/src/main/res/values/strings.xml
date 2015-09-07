@@ -3,4 +3,34 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_adduser">Add User</string>
+
+
+    <string name="city_prompt">Choose a city</string>
+
+    <string-array name="city_arrays">
+        <item>Aluru</item>
+        <item>Vijayawada</item>
+        <item>Vizag</item>
+        <item>Guntur</item>
+        <item>Tirupati</item>
+        <item>Nellore</item>
+        <item>Chilakaluripet</item>
+        <item>Ongole</item>
+    </string-array>
+
+    <string name="state_prompt">Choose a State</string>
+
+    <string-array name="state_arrays">
+        <item>Andhra Pradesh</item>
+    </string-array>
+
+    <string name="country_prompt">Choose a Country</string>
+
+    <string-array name="country_arrays">
+        <item value="1" >India</item>
+    </string-array>
+    <string name="title_activity_view_user">ViewUserActivity</string>
+    <string name="action_settings">Settings</string>
+
+
 </resources>

@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -26,10 +27,12 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         DatabaseHandler db = new DatabaseHandler(this);
+
+
         List<User> users = db.getAllUsers();
 
         listView = (ListView) findViewById(R.id.list_users);
-        UserListAdapter adapter = new UserListAdapter(this,R.layout.list_item,users);
+        UserListAdapter adapter = new UserListAdapter(this, R.layout.list_item, users);
 
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -37,7 +40,13 @@ public class MainActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
-                Toast.makeText(getApplicationContext(), "d" + view.getTag(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), ViewUserActivity.class);
+                Bundle args = new Bundle();
+                args.putString("id",view.getTag().toString());
+                intent.putExtras(args);
+                startActivity(intent);
+                finish();
+
             }
         });
 
